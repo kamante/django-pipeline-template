@@ -85,6 +85,8 @@ STATICFILES_FINDERS = (
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
+STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
+
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '#8+yf*ad*ql2i@6(7b*d(q(_q83fkgm)7g6sn5g-*whoss(u)i'
 
@@ -126,6 +128,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'django_extensions',
+    'pipeline',
     'south',
     '{{ project_name }}.main',
 )
@@ -158,6 +161,13 @@ LOGGING = {
         },
     }
 }
+
+# Pipeline setting# Pipeline settingss
+try:
+    from pipeline_settings import *
+except ImportError:
+    pass
+
 
 try:
     from localsettings import *
